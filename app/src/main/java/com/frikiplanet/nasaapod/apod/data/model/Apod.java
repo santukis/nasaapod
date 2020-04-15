@@ -1,5 +1,7 @@
 package com.frikiplanet.nasaapod.apod.data.model;
 
+import com.squareup.moshi.Json;
+
 import java.util.Date;
 
 public class Apod {
@@ -7,9 +9,9 @@ public class Apod {
     public final static Apod EMPTY = new Apod();
 
     private String title = "";
-    private String description = "";
+    @Json(name = "explanation") private String description = "";
     private Date date = new Date();
-    private String mediaType = "";
+    @Json(name = "media_type") private String mediaType = "";
     private String url = "";
 
     public String getTitle() {

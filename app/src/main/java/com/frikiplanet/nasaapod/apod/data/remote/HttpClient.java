@@ -4,7 +4,6 @@ import com.frikiplanet.nasaapod.core.domain.Response;
 import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.Moshi;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;

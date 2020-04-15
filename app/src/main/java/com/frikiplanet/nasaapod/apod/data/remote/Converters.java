@@ -10,9 +10,11 @@ import java.util.Locale;
 
 public class Converters {
 
+    private String YYYY_MM_DD = "yyyy-MM-dd";
+
     public @FromJson Date fromJsonToDate(String json) {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(json);
+            return createFormatter(YYYY_MM_DD).parse(json);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -22,6 +24,10 @@ public class Converters {
 
     public @ToJson String fromDateToString(Date date) {
         Date desiredDate = date == null ? new Date() : date;
-        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(desiredDate);
+        return createFormatter(YYYY_MM_DD).format(desiredDate);
+    }
+
+    private SimpleDateFormat createFormatter(String pattern) {
+        return new SimpleDateFormat(pattern, Locale.getDefault());
     }
 }

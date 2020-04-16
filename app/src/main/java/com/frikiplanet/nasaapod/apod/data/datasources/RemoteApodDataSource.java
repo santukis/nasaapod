@@ -21,7 +21,7 @@ public class RemoteApodDataSource implements ApodDataSource {
 
     @Override
     public void loadApod(Date from, Callback<Response<Apod>> onResult) {
-        Call<Apod> call = httpClient.apodService.loadApod(new Converters().fromDateToString(from), true, BuildConfig.API_KEY);
+        Call<Apod> call = httpClient.apodService.loadApod(Converters.fromDateToString(from), true, BuildConfig.API_KEY);
         onResult.execute(HttpClient.unwrapCall(call));
     }
 }

@@ -53,14 +53,14 @@ public class RemoteApodDataSourceTest {
             if (response instanceof Response.Success) {
                 Apod apod = ((Response.Success<Apod>) response).data;
 
-                assertEquals(expectedDate, apod.getDate());
-                assertEquals("NGC 253 is one of the brightest spiral galaxies visible, but also one of the dustiest.", apod.getDescription());
-                assertEquals("image", apod.getMediaType());
-                assertEquals("NGC 253: The Silver Coin Galaxy", apod.getTitle());
-                assertEquals("https://apod.nasa.gov/apod/image/2004/NGC253_HstSubaruEsoNew_960.jpg", apod.getUrl());
+                assertEquals(expectedDate, apod.date);
+                assertEquals("NGC 253 is one of the brightest spiral galaxies visible, but also one of the dustiest.", apod.description);
+                assertEquals("image", apod.mediaType);
+                assertEquals("NGC 253: The Silver Coin Galaxy", apod.title);
+                assertEquals("https://apod.nasa.gov/apod/image/2004/NGC253_HstSubaruEsoNew_960.jpg", apod.url);
 
-            } else if (response instanceof Response.Error) {
-                fail("Success should be called but was Error");
+            } else {
+                fail("Success should be called");
             }
         });
     }
@@ -70,13 +70,11 @@ public class RemoteApodDataSourceTest {
         mockWebServer.enqueue(new MockResponse().setResponseCode(403).setBody(RemoteApodDataProvider.serverResponseErrorApiKeyMissing));
 
         apodDataSource.loadApod(new Date(), response -> {
-            if (response instanceof Response.Success) {
-                fail("Error should be called but was Success");
-            }
-
             if (response instanceof Response.Error) {
                 assertEquals(403, ((Response.Error<Apod>) response).code);
                 assertEquals("No api_key was supplied. Get one at https://api.nasa.gov:443", ((Response.Error<Apod>) response).error);
+            } else {
+                fail("Error should be called");
             }
         });
     }
@@ -86,13 +84,11 @@ public class RemoteApodDataSourceTest {
         mockWebServer.enqueue(new MockResponse().setResponseCode(403).setBody(RemoteApodDataProvider.serverResponseErrorWrongApiKey));
 
         apodDataSource.loadApod(new Date(), response -> {
-            if (response instanceof Response.Success) {
-                fail("Error should be called but was Success");
-            }
-
             if (response instanceof Response.Error) {
                 assertEquals(403, ((Response.Error<Apod>) response).code);
                 assertEquals("An invalid api_key was supplied. Get one at https://api.nasa.gov:443", ((Response.Error<Apod>) response).error);
+            } else {
+                fail("Error should be called");
             }
         });
     }
@@ -102,13 +98,11 @@ public class RemoteApodDataSourceTest {
         mockWebServer.enqueue(new MockResponse().setResponseCode(400).setBody(RemoteApodDataProvider.serverResponseErrorDateOutOfBounds));
 
         apodDataSource.loadApod(new Date(), response -> {
-            if (response instanceof Response.Success) {
-                fail("Error should be called but was Success");
-            }
-
             if (response instanceof Response.Error) {
                 assertEquals(400, ((Response.Error<Apod>) response).code);
                 assertEquals("Date must be between Jun 16, 1995 and Apr 15, 2020.", ((Response.Error<Apod>) response).error);
+            } else {
+                fail("Error should be called");
             }
         });
     }
@@ -118,13 +112,11 @@ public class RemoteApodDataSourceTest {
         mockWebServer.enqueue(new MockResponse().setResponseCode(400).setBody(RemoteApodDataProvider.serverResponseErrorWrongFormatDate));
 
         apodDataSource.loadApod(new Date(), response -> {
-            if (response instanceof Response.Success) {
-                fail("Error should be called but was Success");
-            }
-
             if (response instanceof Response.Error) {
                 assertEquals(400, ((Response.Error<Apod>) response).code);
                 assertEquals("time data 'WrongFormat' does not match format '%Y-%m-%d'", ((Response.Error<Apod>) response).error);
+            } else {
+                fail("Error should be called");
             }
         });
     }
@@ -134,13 +126,11 @@ public class RemoteApodDataSourceTest {
         mockWebServer.enqueue(new MockResponse().setSocketPolicy(SocketPolicy.NO_RESPONSE));
 
         apodDataSource.loadApod(new Date(), response -> {
-            if (response instanceof Response.Success) {
-                fail("Error should be called but was Success");
-            }
-
             if (response instanceof Response.Error) {
                 assertEquals(-1, ((Response.Error<Apod>) response).code);
                 assertEquals(ERROR_LOADING_APOD, ((Response.Error<Apod>) response).error);
+            } else {
+                fail("Error should be called");
             }
         });
     }

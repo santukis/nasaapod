@@ -1,56 +1,27 @@
 package com.frikiplanet.nasaapod.apod.data.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.squareup.moshi.Json;
 
 import java.util.Date;
 
+@Entity(tableName = "apods")
 public class Apod {
 
     public final static Apod EMPTY = new Apod();
 
-    private String title = "";
-    @Json(name = "explanation") private String description = "";
-    private Date date = new Date();
-    @Json(name = "media_type") private String mediaType = "";
-    private String url = "";
+    @PrimaryKey
+    public Date date = new Date();
 
-    public String getTitle() {
-        return title;
-    }
+    public String title = "";
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @Json(name = "explanation") public String description = "";
 
-    public String getDescription() {
-        return description;
-    }
+    @ColumnInfo(name = "media_type")
+    @Json(name = "media_type") public String mediaType = "";
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getMediaType() {
-        return mediaType;
-    }
-
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    public String url = "";
 }

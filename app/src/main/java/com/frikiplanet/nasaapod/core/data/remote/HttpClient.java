@@ -1,5 +1,6 @@
-package com.frikiplanet.nasaapod.apod.data.remote;
+package com.frikiplanet.nasaapod.core.data.remote;
 
+import com.frikiplanet.nasaapod.apod.data.remote.ApodService;
 import com.frikiplanet.nasaapod.core.domain.Response;
 import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.Moshi;

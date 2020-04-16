@@ -1,4 +1,4 @@
-package com.frikiplanet.nasaapod.apod.data.remote;
+package com.frikiplanet.nasaapod.core.data.remote;
 
 import com.squareup.moshi.FromJson;
 import com.squareup.moshi.ToJson;

@@ -1,8 +1,8 @@
 package com.frikiplanet.nasaapod.apod.data.datasources;
 
 import com.frikiplanet.nasaapod.apod.data.model.Apod;
-import com.frikiplanet.nasaapod.apod.data.remote.Converters;
-import com.frikiplanet.nasaapod.apod.data.remote.HttpClient;
+import com.frikiplanet.nasaapod.core.data.remote.Converters;
+import com.frikiplanet.nasaapod.core.data.remote.HttpClient;
 import com.frikiplanet.nasaapod.core.domain.Response;
 
 import org.junit.After;

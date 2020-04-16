@@ -12,6 +12,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", '"DEMO_KEY"'
+        buildConfigField "String", "HOST", '"https://api.nasa.gov/"'
     }
 
     buildTypes {

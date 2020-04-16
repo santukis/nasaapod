@@ -1,5 +1,6 @@
 package com.frikiplanet.nasaapod.apod.data.datasources;
 
+import com.frikiplanet.nasaapod.BuildConfig;
 import com.frikiplanet.nasaapod.apod.data.model.Apod;
 import com.frikiplanet.nasaapod.apod.data.remote.Converters;
 import com.frikiplanet.nasaapod.apod.data.remote.HttpClient;
@@ -8,9 +9,9 @@ import com.frikiplanet.nasaapod.core.domain.Response;
 
 import java.util.Date;
 
-public class RemoteApodDataSource implements ApodDataSource {
+import retrofit2.Call;
 
-    private static final String API_KEY = "DEMO_KEY";
+public class RemoteApodDataSource implements ApodDataSource {
 
     public HttpClient httpClient;
 
@@ -20,6 +21,7 @@ public class RemoteApodDataSource implements ApodDataSource {
 
     @Override
     public void loadApod(Date from, Callback<Response<Apod>> onResult) {
-        onResult.execute(HttpClient.unwrapCall(httpClient.apodService.loadApod(new Converters().fromDateToString(from), true, API_KEY)));
+        Call<Apod> call = httpClient.apodService.loadApod(new Converters().fromDateToString(from), true, BuildConfig.API_KEY);
+        onResult.execute(HttpClient.unwrapCall(call));
     }
 }

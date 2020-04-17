@@ -27,6 +27,8 @@ public class Apod {
 
     public String url = "";
 
+    public String copyright = "";
+
     public Apod() { }
 
     public Apod(Date date) {
@@ -40,7 +42,8 @@ public class Apod {
                 Objects.equals(title, ((Apod) obj).title) &&
                 Objects.equals(description, ((Apod) obj).description) &&
                 Objects.equals(mediaType, ((Apod) obj).mediaType) &&
-                Objects.equals(url, ((Apod) obj).url);
+                Objects.equals(url, ((Apod) obj).url) &&
+                Objects.equals(copyright, ((Apod) obj).copyright);
     }
 
     @Override
@@ -51,6 +54,7 @@ public class Apod {
         if (description != null)  result = 15 * result + description.hashCode();
         if (mediaType != null)  result = 15 * result + mediaType.hashCode();
         if (url != null)  result = 15 * result + url.hashCode();
+        if (copyright != null) result = 15 * result + copyright.hashCode();
         return result;
     }
 }

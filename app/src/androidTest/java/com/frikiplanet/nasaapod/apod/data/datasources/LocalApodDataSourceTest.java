@@ -11,19 +11,18 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.frikiplanet.nasaapod.apod.ApodDataProvider._2020_01_01;
+import static com.frikiplanet.nasaapod.apod.ApodDataProvider._2020_03_01;
+import static com.frikiplanet.nasaapod.apod.ApodDataProvider._LOWER_OUT_OF_BOUNDS;
+import static com.frikiplanet.nasaapod.apod.ApodDataProvider._NOT_STORED;
+import static com.frikiplanet.nasaapod.apod.ApodDataProvider._UPPER_OUT_OF_BOUNDS;
+import static com.frikiplanet.nasaapod.apod.ApodDataProvider.apods;
 import static com.frikiplanet.nasaapod.apod.data.datasources.ApodDataSource.ERROR_DELETING_APOD;
 import static com.frikiplanet.nasaapod.apod.data.datasources.ApodDataSource.ERROR_LOADING_APOD;
 import static com.frikiplanet.nasaapod.apod.data.datasources.ApodDataSource.ERROR_SAVING_APOD;
-import static com.frikiplanet.nasaapod.apod.data.datasources.LocalApodDataSourceTest.LocalApodDataProvider._2020_01_01;
-import static com.frikiplanet.nasaapod.apod.data.datasources.LocalApodDataSourceTest.LocalApodDataProvider._2020_03_01;
-import static com.frikiplanet.nasaapod.apod.data.datasources.LocalApodDataSourceTest.LocalApodDataProvider._LOWER_OUT_OF_BOUNDS;
-import static com.frikiplanet.nasaapod.apod.data.datasources.LocalApodDataSourceTest.LocalApodDataProvider._NOT_STORED;
-import static com.frikiplanet.nasaapod.apod.data.datasources.LocalApodDataSourceTest.LocalApodDataProvider._UPPER_OUT_OF_BOUNDS;
-import static com.frikiplanet.nasaapod.apod.data.datasources.LocalApodDataSourceTest.LocalApodDataProvider.apods;
 import static org.junit.Assert.*;
 
 public class LocalApodDataSourceTest {
@@ -229,22 +228,5 @@ public class LocalApodDataSourceTest {
                 fail("Error should be called");
             }
         });
-    }
-
-    static class LocalApodDataProvider {
-        static Date today = new Date();
-        static Date _2020_01_01 = new Date(1577833200000L);
-        static Date _2020_02_01 = new Date(1580511600000L);
-        static Date _2020_03_01 = new Date(1583017200000L);
-        static Date _NOT_STORED = new Date(1267398000000L);
-        static Date _LOWER_OUT_OF_BOUNDS = new Date(1425164400000L);
-        static Date _UPPER_OUT_OF_BOUNDS = new Date(1430431200000L);
-
-        static List<Apod> apods = Arrays.asList(
-                new Apod(_2020_01_01),
-                new Apod(_2020_02_01),
-                new Apod(_2020_03_01),
-                new Apod(today)
-        );
     }
 }

@@ -36,6 +36,15 @@ android {
     }
 
     sourceSets {
+
+        androidTest {
+            java.srcDirs += "src/sharedTest/java"
+        }
+
+        test {
+            java.srcDirs += "src/sharedTest/java"
+        }
+
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 }
@@ -66,4 +75,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation "android.arch.persistence.room:testing:$room_version"
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:3.5.0")
 }
